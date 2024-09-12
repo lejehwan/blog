@@ -8,15 +8,21 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Member {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
 
-    @OneToMany(mappedBy = "post")
+    private String userName;
+
+    @OneToMany(mappedBy = "author")
     private List<Post> posts = new ArrayList<>();
+
+    public Member(String userName) {
+        this.userName = userName;
+    }
 
 }
